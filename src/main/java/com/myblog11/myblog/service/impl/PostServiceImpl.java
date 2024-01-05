@@ -6,6 +6,8 @@ import com.myblog11.myblog.repository.PostRepository;
 import com.myblog11.myblog.service.PostService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostServiceImpl implements PostService {
 
@@ -22,7 +24,7 @@ public class PostServiceImpl implements PostService {
        p.setTitle(postDto.getTitle());
        p.setDescription(postDto.getDescription());
        p.setContent(postDto.getContent());
-        post save = postRepository.save(p);
+       post save = postRepository.save(p);
 
         PostDto dto = new PostDto();
         dto.setTitle(save.getTitle());
@@ -31,6 +33,24 @@ public class PostServiceImpl implements PostService {
         return dto;
     }
 
+    @Override
+    public List<post> listpost() {
+        List<post> all = postRepository.findAll();
+        return all;
+    }
 
+    @Override
+    public void Delete(long id) {
+        postRepository.deleteById(id);
+    }
 
+    @Override
+    public post updae(long id, PostDto postDto) {
+        post post = postRepository.findById(id).get();
+        post.setTitle(postDto.getTitle());
+        post.setDescription(postDto.getDescription());
+        post.setContent(postDto.getContent());
+        post save = postRepository.save(post);
+        return save;
+    }
 }
