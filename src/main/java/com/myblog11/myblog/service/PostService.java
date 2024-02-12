@@ -1,17 +1,13 @@
 package com.myblog11.myblog.service;
 
-import com.myblog11.myblog.entity.post;
 import com.myblog11.myblog.payload.PostDto;
 
 import java.util.List;
 
 public interface PostService {
-    PostDto createPost(PostDto postDto);
+    PostDto CreatePost(PostDto postDto);
 
-    List<post> listpost();
+    PostDto FindByID(long id);
 
-    void Delete(long id);
-
-    post updae(long id,PostDto postDto);
-
+    List<PostDto> FindAll(int pageNo, int pageSize, String sortBy, String sortDir);
 }
